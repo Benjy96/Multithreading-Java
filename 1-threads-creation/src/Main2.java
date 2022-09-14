@@ -5,6 +5,9 @@
 public class Main2 {
 
     public static void main(String [] args) {
+
+        // One of the ways to make a thread is to create a Runnable object
+        // Alternate way is to extend Thread
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -15,6 +18,7 @@ public class Main2 {
 
         thread.setName("Misbehaving thread");
 
+        // create an exception handler for our thread to print the exception
         thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 
             @Override
@@ -23,6 +27,7 @@ public class Main2 {
                         + " the error is " + e.getMessage());
             }
         });
+
         thread.start();
 
     }
