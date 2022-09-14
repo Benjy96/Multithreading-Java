@@ -3,7 +3,7 @@ import java.math.BigInteger;
 /**
  * This examples shows how to terminate a thread which DOES NOT HANDLE INTERRUPT SIGNALS
  * 
- * A "Daemon", or "bitch" thread will bend to the will of an interrupt signal.
+ * A "Daemon" is unimportant - if only thing running, JVM will exit
  * 
  * A non-daemon thread will keep going even if there is an interrupt signal, unless the thread
  * is checking for the interrupt signal and then does something to handle it, like return
@@ -14,11 +14,11 @@ public class Main3 {
     public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new LongComputationTask(new BigInteger("200000"), new BigInteger("100000000")));
 
-        // thread.setDaemon(false); // will NOT stop running
-        thread.setDaemon(true); // make the thread a sub lol - if interrupt sent, will stop
+        thread.setDaemon(false); // if not a daemon, is, what, a DEMON? JVM keeps running if running
+        thread.setDaemon(true); // make the thread a sub lol - if only thing running, JVM exits
         thread.start();
         Thread.sleep(100);
-        thread.interrupt();
+        // thread.interrupt();  // thread.interrupt irrelevant when the only thread is a daemon
     }
 
     private static class LongComputationTask implements Runnable {
