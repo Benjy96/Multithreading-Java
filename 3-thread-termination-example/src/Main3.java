@@ -18,6 +18,9 @@ public class Main3 {
         thread.setDaemon(true); // make the thread a sub lol - if only thing running, JVM exits
         thread.start();
         Thread.sleep(100);
+
+        // thread.interrupt only does something if the thread HANDLES IT
+
         // thread.interrupt();  // thread.interrupt irrelevant when the only thread is a daemon
     }
 
